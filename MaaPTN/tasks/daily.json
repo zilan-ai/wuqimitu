@@ -1,206 +1,166 @@
 {
-    "StartGame": {
+    "Login_EnterGame": {
         "recognition": "TemplateMatch",
-        "template": "ptn_logo",
+        "template": "login/enter_game",
         "threshold": 0.6,
         "action": "Click",
-        "next": ["LoadingWait", "ClosePopup", "DailyRewardEntry"]
+        "post_delay": 3000,
+        "next": ["Login_LoadingWait", "EmotionCheck_Entry"]
     },
-    "LoadingWait": {
+    "Login_LoadingWait": {
         "recognition": "TemplateMatch",
-        "template": "loading_indicator",
+        "template": "common/loading",
         "threshold": 0.5,
         "action": "DoNothing",
         "timeout": 60000,
-        "next": ["ClosePopup", "DailyRewardEntry"]
+        "next": ["EmotionCheck_Entry", "LoginPush_CheckNoMore"]
     },
-    "ClosePopup": {
+    "EmotionCheck_Entry": {
         "recognition": "TemplateMatch",
-        "template": ["btn_close", "btn_confirm", "popup_close"],
+        "template": "emotion_check/option_button",
         "threshold": 0.6,
         "action": "Click",
-        "next": ["ClosePopup", "DailyRewardEntry"]
+        "post_delay": 1500,
+        "next": ["EmotionCheck_Confirm", "EmotionCheck_Done"]
     },
-    "DailyRewardEntry": {
+    "EmotionCheck_Confirm": {
         "recognition": "TemplateMatch",
-        "template": "btn_daily_reward",
-        "threshold": 0.6,
-        "action": "Click",
-        "pre_delay": 1000,
-        "next": ["DailyRewardClaim", "DailyRewardAlreadyClaimed"]
-    },
-    "DailyRewardClaim": {
-        "recognition": "TemplateMatch",
-        "template": "btn_claim_reward",
+        "template": "common/btn_confirm",
         "threshold": 0.6,
         "action": "Click",
         "post_delay": 1000,
-        "next": ["DailyRewardClaimConfirm", "DailyRewardDone"]
+        "next": ["EmotionCheck_Done"]
     },
-    "DailyRewardClaimConfirm": {
-        "recognition": "TemplateMatch",
-        "template": "btn_confirm",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 500,
-        "next": ["DailyRewardDone"]
-    },
-    "DailyRewardAlreadyClaimed": {
-        "recognition": "TemplateMatch",
-        "template": "text_already_claimed",
-        "threshold": 0.5,
-        "action": "DoNothing",
-        "next": ["DailyRewardDone"]
-    },
-    "DailyRewardDone": {
+    "EmotionCheck_Done": {
         "recognition": "DirectHit",
         "action": "Click",
-        "target": [30, 30, 1, 1],
-        "next": ["MailEntry"]
-    },
-    "MailEntry": {
-        "recognition": "TemplateMatch",
-        "template": "btn_mail",
-        "threshold": 0.6,
-        "action": "Click",
-        "pre_delay": 1000,
-        "next": ["MailClaimAll", "MailEmpty"]
-    },
-    "MailClaimAll": {
-        "recognition": "TemplateMatch",
-        "template": "btn_claim_all",
-        "threshold": 0.6,
-        "action": "Click",
+        "target": [1270, 10, 1, 1],
         "post_delay": 1000,
-        "next": ["MailClaimConfirm", "MailDone"]
+        "next": ["LoginPush_CheckNoMore"]
     },
-    "MailClaimConfirm": {
+    "LoginPush_CheckNoMore": {
         "recognition": "TemplateMatch",
-        "template": "btn_confirm",
+        "template": "login_push/check_no_more",
         "threshold": 0.6,
         "action": "Click",
         "post_delay": 500,
-        "next": ["MailDone"]
+        "next": ["LoginPush_Close"]
     },
-    "MailEmpty": {
+    "LoginPush_Close": {
         "recognition": "TemplateMatch",
-        "template": "text_no_mail",
-        "threshold": 0.5,
-        "action": "DoNothing",
-        "next": ["MailDone"]
+        "template": "login_push/close_button",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["AssistantMode_Enter"]
     },
-    "MailDone": {
+    "AssistantMode_Enter": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/switch_assistant_mode",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 2000,
+        "next": ["Assistant_NightingaleStamina", "Assistant_Ready"]
+    },
+    "Assistant_NightingaleStamina": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_stamina_supply",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_NightingaleSupervision"]
+    },
+    "Assistant_NightingaleSupervision": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_supervision_material",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_NightingaleSupervisionEvent"]
+    },
+    "Assistant_NightingaleSupervisionEvent": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_supervision_event",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_BanquetMemoryStorm"]
+    },
+    "Assistant_BanquetMemoryStorm": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/banquet_memory_storm",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_NightingaleDispatch"]
+    },
+    "Assistant_NightingaleDispatch": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_dispatch",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_NightingaleSecretAlliance"]
+    },
+    "Assistant_NightingaleSecretAlliance": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_secret_alliance_donate",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_BanquetAbyss"]
+    },
+    "Assistant_BanquetAbyss": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/banquet_turbid_dark_abyss",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_NightingaleFreeGift"]
+    },
+    "Assistant_NightingaleFreeGift": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_free_gift",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_NightingaleFriendPoint"]
+    },
+    "Assistant_NightingaleFriendPoint": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/nightingale_friend_point",
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1500,
+        "next": ["Assistant_ClaimConfirm", "Assistant_AllDone"]
+    },
+    "Assistant_ClaimConfirm": {
+        "recognition": "TemplateMatch",
+        "template": ["common/btn_confirm", "common/btn_claim", "common/btn_ok"],
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1000,
+        "max_hit": 20,
+        "next": ["Assistant_ClaimConfirm", "Assistant_BackFromSub"]
+    },
+    "Assistant_BackFromSub": {
+        "recognition": "TemplateMatch",
+        "template": ["common/btn_back", "common/btn_close"],
+        "threshold": 0.6,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["Assistant_NightingaleStamina", "Assistant_NightingaleSupervision", "Assistant_NightingaleSupervisionEvent", "Assistant_BanquetMemoryStorm", "Assistant_NightingaleDispatch", "Assistant_NightingaleSecretAlliance", "Assistant_BanquetAbyss", "Assistant_NightingaleFreeGift", "Assistant_NightingaleFriendPoint", "Assistant_AllDone"]
+    },
+    "Assistant_AllDone": {
         "recognition": "DirectHit",
-        "action": "Click",
-        "target": [30, 30, 1, 1],
-        "next": ["DispatchEntry"]
-    },
-    "DispatchEntry": {
-        "recognition": "TemplateMatch",
-        "template": "btn_dispatch",
-        "threshold": 0.6,
-        "action": "Click",
-        "pre_delay": 1500,
-        "next": ["DispatchClaim", "DispatchStart", "DispatchInProgress"]
-    },
-    "DispatchClaim": {
-        "recognition": "TemplateMatch",
-        "template": "btn_dispatch_claim",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 1000,
-        "next": ["DispatchClaimConfirm", "DispatchStart"]
-    },
-    "DispatchClaimConfirm": {
-        "recognition": "TemplateMatch",
-        "template": "btn_confirm",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 500,
-        "next": ["DispatchStart"]
-    },
-    "DispatchStart": {
-        "recognition": "TemplateMatch",
-        "template": "btn_dispatch_start",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 500,
-        "next": ["DispatchSelectAll", "DispatchConfirm"]
-    },
-    "DispatchSelectAll": {
-        "recognition": "TemplateMatch",
-        "template": "btn_select_all",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 300,
-        "next": ["DispatchConfirm"]
-    },
-    "DispatchConfirm": {
-        "recognition": "TemplateMatch",
-        "template": "btn_dispatch_confirm",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 1000,
-        "next": ["DispatchDone"]
-    },
-    "DispatchInProgress": {
-        "recognition": "TemplateMatch",
-        "template": "text_dispatch_in_progress",
-        "threshold": 0.5,
-        "action": "DoNothing",
-        "next": ["DispatchDone"]
-    },
-    "DispatchDone": {
-        "recognition": "DirectHit",
-        "action": "Click",
-        "target": [30, 30, 1, 1],
-        "next": ["FriendEntry"]
-    },
-    "FriendEntry": {
-        "recognition": "TemplateMatch",
-        "template": "btn_friend",
-        "threshold": 0.6,
-        "action": "Click",
-        "pre_delay": 1500,
-        "next": ["FriendVisit", "FriendDone"]
-    },
-    "FriendVisit": {
-        "recognition": "TemplateMatch",
-        "template": "btn_visit",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 1000,
-        "next": ["FriendVisitNext", "FriendDone"]
-    },
-    "FriendVisitNext": {
-        "recognition": "TemplateMatch",
-        "template": "btn_next_friend",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 500,
-        "repeat": 5,
-        "repeat_delay": 800,
-        "next": ["FriendDone"]
-    },
-    "FriendDone": {
-        "recognition": "DirectHit",
-        "action": "Click",
-        "target": [30, 30, 1, 1],
-        "next": ["BackToHome"]
-    },
-    "BackToHome": {
-        "recognition": "TemplateMatch",
-        "template": "btn_home",
-        "threshold": 0.6,
-        "action": "Click",
-        "post_delay": 1000,
-        "next": ["HomeReady"]
-    },
-    "HomeReady": {
-        "recognition": "TemplateMatch",
-        "template": "home_indicator",
-        "threshold": 0.5,
         "action": "DoNothing",
         "next": []
+    },
+    "Assistant_Ready": {
+        "recognition": "TemplateMatch",
+        "template": "assistant/assistant_mode_indicator",
+        "threshold": 0.5,
+        "action": "DoNothing",
+        "next": ["Assistant_NightingaleStamina"]
     }
 }

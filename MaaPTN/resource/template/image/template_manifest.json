@@ -1,62 +1,59 @@
 {
-    "template_images": {
-        "_description": "此文件记录所有需要的模板图片及其说明。请将对应的截图放入 resource/template/image/ 目录。",
+    "_description": "无期迷途自动化日常 - 模板图片清单。请将截图放入对应目录，文件名与下方一致，格式为PNG。",
 
-        "ptn_logo": "游戏启动界面的Logo/开始按钮",
-        "loading_indicator": "加载中的指示器（转圈动画等）",
-
-        "btn_close": "通用关闭按钮（X）",
-        "btn_confirm": "通用确认按钮",
-        "btn_cancel": "通用取消按钮",
-        "popup_close": "弹窗关闭按钮",
-
-        "btn_daily_reward": "主界面上的日常奖励入口按钮",
-        "btn_claim_reward": "领取奖励按钮",
-        "btn_claim_all": "一键领取全部按钮",
-        "text_already_claimed": "已领取文字标识",
-        "text_no_mail": "无邮件文字标识",
-
-        "btn_mail": "主界面上的邮件入口按钮",
-
-        "btn_dispatch": "主界面上的派遣/搜查入口按钮",
-        "btn_dispatch_claim": "派遣领取按钮",
-        "btn_dispatch_start": "派遣出发按钮",
-        "btn_dispatch_confirm": "派遣确认按钮",
-        "btn_select_all": "全选按钮",
-        "text_dispatch_in_progress": "派遣进行中文字标识",
-
-        "btn_friend": "主界面上的好友入口按钮",
-        "btn_visit": "访问好友按钮",
-        "btn_next_friend": "下一个好友按钮",
-
-        "btn_battle": "主界面上的战斗入口按钮",
-        "btn_stage_select": "关卡选择按钮",
-        "btn_start_battle": "开始战斗按钮",
-        "btn_battle_confirm": "战斗确认按钮",
-        "auto_battle_indicator": "自动战斗指示器",
-        "btn_battle_end": "战斗结束按钮",
-        "btn_result_confirm": "结算确认按钮",
-        "text_no_stamina": "体力不足文字标识",
-
-        "btn_nightmare": "恶梦副本入口按钮",
-        "btn_nightmare_stage": "恶梦关卡选择按钮",
-
-        "btn_home": "返回主界面按钮",
-        "home_indicator": "主界面标识（用于确认回到主页）"
+    "login": {
+        "_dir": "resource/template/image/login/",
+        "enter_game.png": "登录界面【进入游戏按钮】 - 游戏启动后的登录界面中，点击进入游戏的按钮截图"
     },
 
-    "screenshot_requirements": {
-        "_description": "截图要求说明",
-        "resolution": "1280x720 (基础分辨率，其他分辨率会自动缩放)",
-        "format": "PNG格式，无损",
-        "cropping": "只裁剪需要识别的按钮/文字区域，尽量小且特征明显",
-        "naming": "使用英文小写+下划线命名，与pipeline JSON中的template字段对应",
+    "emotion_check": {
+        "_dir": "resource/template/image/emotion_check/",
+        "option_button.png": "情绪检测【情绪检测选项按钮】 - 情绪检测界面中，选择对话选项的按钮截图"
+    },
+
+    "login_push": {
+        "_dir": "resource/template/image/login_push/",
+        "check_no_more.png": "登录推送【勾选今日不再弹出按钮】 - 登录推送弹窗中，勾选'今日不再弹出'的复选框截图",
+        "close_button.png": "登录推送【关闭登录推送按钮】 - 登录推送弹窗的关闭按钮截图"
+    },
+
+    "assistant": {
+        "_dir": "resource/template/image/assistant/",
+        "switch_assistant_mode.png": "助手模式【切换助手模式按钮】 - 主界面中切换到助手模式的按钮截图",
+        "assistant_mode_indicator.png": "助手模式界面标识 - 用于确认已进入助手模式的特征截图",
+        "nightingale_stamina_supply.png": "夜莺助手【体力专属补给领取按钮】 - 夜莺助手中体力专属补给的领取按钮",
+        "nightingale_supervision_material.png": "夜莺助手【领取监管系统物资按钮】 - 夜莺助手中监管系统物资的领取按钮",
+        "nightingale_supervision_event.png": "夜莺助手【监管事件按钮】 - 夜莺助手中监管事件的按钮",
+        "banquet_memory_storm.png": "夜宴助手【记忆风暴按钮】 - 夜宴助手中记忆风暴的按钮",
+        "nightingale_dispatch.png": "夜莺助手【派遣任务按钮】 - 夜莺助手中派遣任务的按钮",
+        "nightingale_secret_alliance_donate.png": "夜莺助手【秘盟捐赠按钮】 - 夜莺助手中秘盟捐赠的按钮",
+        "banquet_turbid_dark_abyss.png": "夜宴助手【浊暗之阱按钮】 - 夜宴助手中浊暗之阱的按钮",
+        "nightingale_free_gift.png": "夜莺助手【免费礼包按钮】 - 夜莺助手中免费礼包的按钮",
+        "nightingale_friend_point.png": "夜莺助手【友情点按钮】 - 夜莺助手中友情点的按钮"
+    },
+
+    "common": {
+        "_dir": "resource/template/image/common/",
+        "btn_confirm.png": "通用确认按钮 - 各界面中出现的确认/确定按钮",
+        "btn_claim.png": "通用领取按钮 - 各界面中出现的领取按钮",
+        "btn_ok.png": "通用OK按钮 - 各界面中出现的OK按钮",
+        "btn_back.png": "通用返回按钮 - 各界面中出现的返回按钮",
+        "btn_close.png": "通用关闭按钮 - 各界面中出现的关闭(X)按钮",
+        "loading.png": "加载中指示器 - 游戏加载时的动画/进度条截图"
+    },
+
+    "_screenshot_rules": {
+        "resolution": "1280x720 (模拟器设置为此分辨率)",
+        "format": "PNG无损格式",
+        "cropping": "只截取按钮/文字本身，尽量小且特征明显，避免多余背景",
+        "naming": "与上述清单中的文件名完全一致",
         "tips": [
-            "1. 使用模拟器截图时请设置为1280x720分辨率",
-            "2. 截取的模板图片应只包含目标元素，避免多余背景",
+            "1. 模拟器分辨率必须设置为 1280x720",
+            "2. 每个按钮只截取按钮本身区域，不要包含太多背景",
             "3. 对于可能变化的元素（如数字），只截取固定部分",
-            "4. 建议每个按钮截取2-3个不同状态的变体以提高识别率",
-            "5. 文字识别建议使用OCR而非模板匹配"
+            "4. 如果按钮有不同状态（如已领取/未领取），建议截取未领取状态",
+            "5. 通用按钮（确认/返回/关闭）只需截取一次，各界面通用",
+            "6. 截图时确保画面清晰，不要有模糊或重叠"
         ]
     }
 }

@@ -24,15 +24,21 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:
-  python main.py                          运行所有启用的日常任务
-  python main.py --task daily_reward      只运行领取日常奖励
-  python main.py --task mail              只运行领取邮件
-  python main.py --task dispatch          只运行派遣
-  python main.py --task stamina_farm      只运行体力刷副本
-  python main.py --task nightmare         只运行恶梦本
-  python main.py --list                   列出可用任务
-  python main.py --config config.json     指定配置文件
-  python main.py --serial 127.0.0.1:5555  指定设备序列号
+  python main.py                              运行完整日常流程
+  python main.py --task login                 只运行登录
+  python main.py --task assistant_all         只运行助手模式全部
+  python main.py --task nightingale_stamina   只运行夜莺体力补给
+  python main.py --task nightingale_dispatch  只运行夜莺派遣
+  python main.py --task banquet_memory_storm  只运行夜宴记忆风暴
+  python main.py --task banquet_abyss         只运行夜宴浊暗之阱
+  python main.py --list                       列出可用任务
+  python main.py --config config.json         指定配置文件
+  python main.py --address 127.0.0.1:5555     指定ADB连接地址
+
+完整日常流程:
+  登录游戏 → 情绪检测 → 退出 → 处理登录推送 → 进入助手模式
+  → 夜莺: 体力补给/监管物资/监管事件/派遣/秘盟/免费礼包/友情点
+  → 夜宴: 记忆风暴/浊暗之阱
         """,
     )
 
@@ -40,7 +46,7 @@ def main():
     parser.add_argument("--serial", default=None, help="ADB设备序列号")
     parser.add_argument("--adb-path", default="adb", help="ADB可执行文件路径")
     parser.add_argument("--address", default=None, help="ADB连接地址 (如 127.0.0.1:5555)")
-    parser.add_argument("--task", default=None, help="运行指定任务 (不指定则运行全部)")
+    parser.add_argument("--task", default=None, help="运行指定任务 (不指定则运行完整日常)")
     parser.add_argument("--list", action="store_true", help="列出可用任务")
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="日志级别")
     parser.add_argument("--log-to-file", action="store_true", help="将日志写入文件")
@@ -67,10 +73,14 @@ def main():
 
     if args.list:
         logger.info("可用任务列表:")
-        for task_name, (entry, pipeline) in TaskManager.TASK_PIPELINE_MAP.items():
+        logger.info("%-25s %-8s %s", "任务名", "状态", "说明")
+        logger.info("-" * 60)
+        for task_name in TaskManager.DAILY_TASK_ORDER:
+            entry, pipeline = TaskManager.TASK_PIPELINE_MAP[task_name]
+            display = TaskManager.TASK_DISPLAY_NAMES.get(task_name, task_name)
             enabled = config.get(f"tasks.{task_name}", False)
             status = "启用" if enabled else "禁用"
-            logger.info("  %-15s [%s] - 入口: %s, 文件: %s", task_name, status, entry, pipeline)
+            logger.info("%-25s [%-4s] %s", task_name, status, display)
         return
 
     resource_dir = os.path.join(base_dir, config.get("resource_dir", "resource"))
@@ -92,7 +102,7 @@ def main():
         import glob
         template_dir = os.path.join(resource_dir, "template", "image")
         if os.path.exists(template_dir):
-            for tpl_file in glob.glob(os.path.join(template_dir, "*.png")):
+            for tpl_file in sorted(glob.glob(os.path.join(template_dir, "**", "*.png"), recursive=True)):
                 tpl_name = os.path.relpath(tpl_file, template_dir)
                 result = matcher.match(img, tpl_name, threshold=0.5)
                 if result:
@@ -121,7 +131,7 @@ def main():
             success = manager.run_task(args.task)
             sys.exit(0 if success else 1)
         else:
-            manager.run_all_daily()
+            manager.run_full_daily()
     except KeyboardInterrupt:
         logger.info("用户中断，正在停止...")
         manager.engine.stop()
