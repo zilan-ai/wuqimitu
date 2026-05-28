@@ -1,0 +1,62 @@
+{
+    "template_images": {
+        "_description": "此文件记录所有需要的模板图片及其说明。请将对应的截图放入 resource/template/image/ 目录。",
+
+        "ptn_logo": "游戏启动界面的Logo/开始按钮",
+        "loading_indicator": "加载中的指示器（转圈动画等）",
+
+        "btn_close": "通用关闭按钮（X）",
+        "btn_confirm": "通用确认按钮",
+        "btn_cancel": "通用取消按钮",
+        "popup_close": "弹窗关闭按钮",
+
+        "btn_daily_reward": "主界面上的日常奖励入口按钮",
+        "btn_claim_reward": "领取奖励按钮",
+        "btn_claim_all": "一键领取全部按钮",
+        "text_already_claimed": "已领取文字标识",
+        "text_no_mail": "无邮件文字标识",
+
+        "btn_mail": "主界面上的邮件入口按钮",
+
+        "btn_dispatch": "主界面上的派遣/搜查入口按钮",
+        "btn_dispatch_claim": "派遣领取按钮",
+        "btn_dispatch_start": "派遣出发按钮",
+        "btn_dispatch_confirm": "派遣确认按钮",
+        "btn_select_all": "全选按钮",
+        "text_dispatch_in_progress": "派遣进行中文字标识",
+
+        "btn_friend": "主界面上的好友入口按钮",
+        "btn_visit": "访问好友按钮",
+        "btn_next_friend": "下一个好友按钮",
+
+        "btn_battle": "主界面上的战斗入口按钮",
+        "btn_stage_select": "关卡选择按钮",
+        "btn_start_battle": "开始战斗按钮",
+        "btn_battle_confirm": "战斗确认按钮",
+        "auto_battle_indicator": "自动战斗指示器",
+        "btn_battle_end": "战斗结束按钮",
+        "btn_result_confirm": "结算确认按钮",
+        "text_no_stamina": "体力不足文字标识",
+
+        "btn_nightmare": "恶梦副本入口按钮",
+        "btn_nightmare_stage": "恶梦关卡选择按钮",
+
+        "btn_home": "返回主界面按钮",
+        "home_indicator": "主界面标识（用于确认回到主页）"
+    },
+
+    "screenshot_requirements": {
+        "_description": "截图要求说明",
+        "resolution": "1280x720 (基础分辨率，其他分辨率会自动缩放)",
+        "format": "PNG格式，无损",
+        "cropping": "只裁剪需要识别的按钮/文字区域，尽量小且特征明显",
+        "naming": "使用英文小写+下划线命名，与pipeline JSON中的template字段对应",
+        "tips": [
+            "1. 使用模拟器截图时请设置为1280x720分辨率",
+            "2. 截取的模板图片应只包含目标元素，避免多余背景",
+            "3. 对于可能变化的元素（如数字），只截取固定部分",
+            "4. 建议每个按钮截取2-3个不同状态的变体以提高识别率",
+            "5. 文字识别建议使用OCR而非模板匹配"
+        ]
+    }
+}

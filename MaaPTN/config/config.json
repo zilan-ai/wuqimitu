@@ -1,0 +1,28 @@
+{
+    "adb_path": "adb",
+    "serial": null,
+    "adb_address": "127.0.0.1:5555",
+    "resource_dir": "resource",
+    "pipeline_dir": "tasks",
+    "log_level": "INFO",
+    "log_to_file": true,
+    "log_dir": "logs",
+    "tasks": {
+        "daily_reward": true,
+        "mail": true,
+        "dispatch": true,
+        "visit_friend": true,
+        "shop_buy": false,
+        "stamina_farm": false,
+        "stamina_stage": "1-7",
+        "stamina_times": 5,
+        "nightmare": false,
+        "abyss": false
+    },
+    "delays": {
+        "between_tasks": 2.0,
+        "after_tap": 0.5,
+        "after_swipe": 0.8,
+        "loading_wait": 5.0
+    }
+}
